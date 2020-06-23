@@ -11,7 +11,7 @@ class Login extends Controller
     }
     public function login(){
       $acc = input('post.acc','');
-      $psw = input('post.psw','');
+      $pwd = input('post.pwd','');
       $code = input('post.code','');
       $errorCode = config('ErrorCode');
       $returnJson = [
@@ -24,7 +24,7 @@ class Login extends Controller
       }else{
         $where = [
           'account' => $acc,
-          'psw' => $psw
+          'pwd' => $pwd
         ];
         $res = db('user')->where($where)->find();
         if($res){

@@ -26,7 +26,7 @@ class Index extends Controller
     $data = [
       'account' => $_POST['acc'],
       'username' => $_POST['username'],
-      'psw' => $_POST['pwd']
+      'pwd' => $_POST['pwd']
     ];
     $res = db('user')->insert($data);
     if ($res) {
@@ -40,7 +40,7 @@ class Index extends Controller
     $data = [
       'account' => $_POST['acc'],
       'username' => $_POST['username'],
-      'psw' => $_POST['pwd']
+      'pwd' => $_POST['pwd']
     ];
     $res = db('user')->where('id', $_POST['id'])->update($data);
     if ($res) {
