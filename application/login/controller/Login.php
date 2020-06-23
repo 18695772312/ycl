@@ -26,7 +26,7 @@ class Login extends Controller
           'account' => $acc,
           'psw' => $psw
         ];
-        $res = db('wjx_user')->where($where)->find();
+        $res = db('user')->where($where)->find();
         if($res){
           Session::set('user',$res);
           $returnJson = [

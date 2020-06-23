@@ -13,11 +13,11 @@ class Index extends Controller
     $lastTime = input('get.lastTime', '');
     $startTime = input('get.startTime', '');
     if($keyword){
-      $res =db('wjx_user')->where('username', 'like', "%{$keyword}%")->paginate(4);
+      $res =db('user')->where('username', 'like', "%{$keyword}%")->paginate(4);
     } else if($lastTime && $lastTime){
-      $res =db('wjx_user') -> where('create_time','between time',["{$startTime}","{$lastTime}"])->paginate(4);
+      $res =db('user') -> where('create_time','between time',["{$startTime}","{$lastTime}"])->paginate(4);
     }else{
-      $res = db('wjx_user')->paginate(4);
+      $res = db('user')->paginate(4);
     }
     return $this->fetch('index', ["list" => $res]);
   }
@@ -28,7 +28,7 @@ class Index extends Controller
       'username' => $_POST['username'],
       'psw' => $_POST['pwd']
     ];
-    $res = db('wjx_user')->insert($data);
+    $res = db('user')->insert($data);
     if ($res) {
       echo json_encode(['msg' => '添加成功', 'status' => 1]);
     } else {
@@ -42,7 +42,7 @@ class Index extends Controller
       'username' => $_POST['username'],
       'psw' => $_POST['pwd']
     ];
-    $res = db('wjx_user')->where('id', $_POST['id'])->update($data);
+    $res = db('user')->where('id', $_POST['id'])->update($data);
     if ($res) {
       echo json_encode(['msg' => '修改成功', 'status' => 1]);
     } else {
@@ -51,7 +51,7 @@ class Index extends Controller
   }
   public function del()
   {
-    $res = db('wjx_user')->where('id', $_POST['id'])->delete();
+    $res = db('user')->where('id', $_POST['id'])->delete();
     if ($res) {
       echo json_encode(['msg' => '删除成功', 'status' => 1]);
     } else {
@@ -61,7 +61,7 @@ class Index extends Controller
   public function search()
   {
     $keyword = input('post.keyword', '');
-    $res =db('wjx_user')->where('username', 'like', "%{$keyword}%")->paginate(4);
+    $res =db('user')->where('username', 'like', "%{$keyword}%")->paginate(4);
     if ($res) {
       echo json_encode(['data'=> $res,'status' => 1]);
     } else {
